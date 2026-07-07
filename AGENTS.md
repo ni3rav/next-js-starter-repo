@@ -265,3 +265,45 @@ function MyComponent(props) {
   return <div className={"p-4 " + props.className}>...</div>
 }
 ```
+
+## 11. Build Verification — Always Pass Before Submitting
+
+Before considering any task complete, you **must** run the following checks in order. Fix any failures before proceeding.
+
+### Step 1: Typecheck
+
+```bash
+pnpm typecheck
+```
+
+Catches TypeScript errors. Must pass with zero errors.
+
+### Step 2: Lint
+
+```bash
+pnpm lint
+```
+
+Catches code quality issues. Must pass with zero errors.
+
+### Step 3: Build
+
+```bash
+pnpm build
+```
+
+Verifies production build succeeds. This is the final gate — if this fails, the code is not shippable.
+
+### Step 4: Format
+
+Only run **after** all checks above pass:
+
+```bash
+pnpm format
+```
+
+Normalizes code style across all files.
+
+**Summary order:** `typecheck` → `lint` → `build` → `format`
+
+Do not skip steps. Do not commit until `build` passes cleanly.

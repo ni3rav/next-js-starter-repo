@@ -21,5 +21,5 @@ export const authRoutes = new Elysia()
         name: t.String(),
         email: t.String(),
       }),
-    },
+    }
   )

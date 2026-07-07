@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import Password from "@/components/ui/password-input"
 import { signUp } from "@/lib/auth-client"
 import { type SignUpInput, signUpSchema } from "@/modules/auth"
 import { useState } from "react"
@@ -40,7 +41,7 @@ export default function SignUpPage() {
   return (
     <section className="flex min-h-screen w-full items-center justify-center py-4 lg:py-20">
       <div className="w-full max-w-sm space-y-6">
-        <h2 className="mt-6 font-bold text-3xl">Create an account</h2>
+        <h2 className="mt-6 text-3xl font-bold">Create an account</h2>
 
         {error && (
           <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">
@@ -78,13 +79,10 @@ export default function SignUpPage() {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="password">Password</Label>
-            <Input
-              id="password"
-              type="password"
+            <Password
+              label="Password"
               autoComplete="new-password"
               {...register("password")}
-              className="mt-1"
             />
             {errors.password && (
               <p className="text-sm text-destructive">

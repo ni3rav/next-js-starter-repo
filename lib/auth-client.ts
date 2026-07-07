@@ -9,7 +9,7 @@ export async function signIn(email: string, password: string) {
       email,
       password,
       callbackURL: "/",
-    }),
+    })
   )
 }
 
@@ -20,7 +20,7 @@ export async function signUp(email: string, password: string, name: string) {
       password,
       name,
       callbackURL: "/",
-    }),
+    })
   )
 }
 

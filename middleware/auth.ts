@@ -6,7 +6,7 @@ export const authMiddleware = new Elysia({ name: "auth" }).derive(
   { as: "scoped" },
   async ({ request }) => {
     const { data: session } = await tryCatch(
-      auth.api.getSession({ headers: request.headers }),
+      auth.api.getSession({ headers: request.headers })
     )
 
     if (!session) {
@@ -20,14 +20,14 @@ export const authMiddleware = new Elysia({ name: "auth" }).derive(
       user: session.user,
       session: session.session,
     }
-  },
+  }
 )
 
 export const requireAuth = new Elysia({ name: "require-auth" }).derive(
   { as: "scoped" },
   async ({ request, status }) => {
     const { data: session } = await tryCatch(
-      auth.api.getSession({ headers: request.headers }),
+      auth.api.getSession({ headers: request.headers })
     )
 
     if (!session) {
@@ -38,5 +38,5 @@ export const requireAuth = new Elysia({ name: "require-auth" }).derive(
       user: session.user,
       session: session.session,
     }
-  },
+  }
 )
