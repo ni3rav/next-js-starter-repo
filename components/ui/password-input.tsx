@@ -24,9 +24,9 @@ const Password = forwardRef<HTMLInputElement, PasswordProps>(
     const toggleVisibility = () => setIsVisible((prevState) => !prevState)
 
     return (
-      <div className="w-full max-w-xs space-y-2">
+      <div className="w-full space-y-2">
         {label && <Label htmlFor={id}>{label}</Label>}
-        <InputGroup className="relative mb-3">
+        <InputGroup className="relative mb-3 h-9">
           <InputGroupInput
             {...props}
             id={id}
@@ -40,7 +40,7 @@ const Password = forwardRef<HTMLInputElement, PasswordProps>(
               variant="ghost"
               size="icon"
               onClick={toggleVisibility}
-              className="text-muted-foreground hover:bg-transparent"
+              className="hover:bg-transparent hover:text-muted-foreground"
               disabled={props.disabled}
             >
               {isVisible ? <EyeOffIcon /> : <EyeIcon />}
