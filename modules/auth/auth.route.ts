@@ -1,10 +1,16 @@
 import { Elysia, t } from "elysia"
 import { auth } from "@/lib/auth"
-import { authMiddleware } from "@/middleware/auth"
+import { authMiddleware, requireAuth } from "@/middleware/auth"
 
 export const authRoutes = new Elysia()
   .use(authMiddleware)
-  .mount(auth.handler)
+  .all("/auth/*", ({ request }) => {
+    const BETTER_AUTH_ACCEPT_METHODS = ["POST", "GET"]
+    if (BETTER_AUTH_ACCEPT_METHODS.includes(request.method)) {
+      return auth.handler(request)
+    }
+    return new Response("Method Not Allowed", { status: 405 })
+  })
   .get(
     "/users/:id",
     ({ params: { id }, user }) => ({
